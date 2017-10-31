@@ -27,12 +27,12 @@ public class User extends Template
     /**
      * Constructor for initialising username and passHash
      */
-    public User (String username, String insecurePass) {
+    public User (String username, String password) {
         this.setUsername(username);
         this.setPassword(password);
     }
 
-    public voic setUsername (String username) {
+    public void setUsername (String username) {
         this.username = username;
     }
 
