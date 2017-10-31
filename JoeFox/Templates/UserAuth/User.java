@@ -48,6 +48,7 @@ public class User extends Template
      * @param String username
      */
     public void setUsername (String username) {
+        //Do some validation on the length of the username (>4 chars)
         this.username = username;
     }
 
@@ -59,5 +60,6 @@ public class User extends Template
     public void setPassword (String password) {
         //Stick password hashing code call here
         //this.passHash = encrypted password
+        this.passHash = password; //This is temporary
     }
 }
