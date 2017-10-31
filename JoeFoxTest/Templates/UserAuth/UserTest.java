@@ -23,7 +23,7 @@ public class UserTest
 
     @Test
     public void testSetUsernameSetsTheUsername () {
-        user.setUsername (new String ("John Doe"));
+        this.user.setUsername (new String ("John Doe"));
         assertEquals (user.username, new String ("John Doe"));
     }
 
@@ -32,7 +32,14 @@ public class UserTest
      */
     @Test
     public void testSetPasswordSetsThePassHash () {
-        user.setPassword (new String ("p45sW0rD"));
+        this.user.setPassword (new String ("p45sW0rD"));
+        assertEquals (user.passHash, new String ("p45sW0rD"));
+    }
+
+    @Test
+    public void testArgsConstructorSetsUsernameAndPassword () {
+        user = new User (new String ("John Doe"), new String ("p45sW0rD"));
+        assertEquals (user.username, new String ("John Doe"));
         assertEquals (user.passHash, new String ("p45sW0rD"));
     }
 }
