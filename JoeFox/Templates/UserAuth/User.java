@@ -15,27 +15,47 @@ import JoeFox.Templates.Template;
 
 public class User extends Template
 {
+    /**
+     * Store the user's name
+     */
     public String username;
+
+    /**
+     * Store the user's password
+     * This should be encrypted in some way
+     */
     public String passHash;
 
     /**
      * Noargs constructor required for javaspaces
      */
-    public User () {
-    }
+    public User () {}
 
     /**
      * Constructor for initialising username and passHash
+     *
+     * @param String username
+     * @param String password - the unencrypted password
      */
     public User (String username, String password) {
         this.setUsername(username);
         this.setPassword(password);
     }
 
+    /**
+     * Set this.username
+     *
+     * @param String username
+     */
     public void setUsername (String username) {
         this.username = username;
     }
 
+    /**
+     * Encrypt and set this.password to the encrypted value
+     *
+     * @param String password - the unencrypted password
+     */
     public void setPassword (String password) {
         //Stick password hashing code call here
         //this.passHash = encrypted password

@@ -17,6 +17,5 @@ public class Template //extends javaspace template
     /**
      * Noargs constructor required for javaspaces
      */
-    public Template () {
-    }
+    public Template () {}
 }
