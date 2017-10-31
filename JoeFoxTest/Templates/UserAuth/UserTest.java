@@ -18,13 +18,13 @@ public class UserTest
 
     @Test
     public void testUserExtendsTemplate () {
-        assertThat(user, instanceOf(Template.class));
+        assertThat(this.user, instanceOf(Template.class));
     }
 
     @Test
     public void testSetUsernameSetsTheUsername () {
         this.user.setUsername (new String ("John Doe"));
-        assertEquals (user.username, new String ("John Doe"));
+        assertEquals (this.user.username, new String ("John Doe"));
     }
 
     /**
@@ -33,7 +33,7 @@ public class UserTest
     @Test
     public void testSetPasswordSetsThePassHash () {
         this.user.setPassword (new String ("p45sW0rD"));
-        assertEquals (user.passHash, new String ("p45sW0rD"));
+        assertEquals (this.user.passHash, new String ("p45sW0rD"));
     }
 
     @Test
