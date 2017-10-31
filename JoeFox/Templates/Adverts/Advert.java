@@ -42,4 +42,19 @@ public class Advert extends Template
         this.description = description;
         this.price       = price;
     }
+
+    public void setTitle (String title) {
+        //Throw exception if title empty
+        this.title = title;
+    }
+
+    public void setDescription (String description) {
+        //throw exception if description empty
+        this.description = description;
+    }
+
+    public void setPrice (Float price) {
+        //Throw exception if price negative
+        this.price = price;
+    }
 }
