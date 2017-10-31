@@ -2,6 +2,7 @@
 
 tests="
     JoeFoxTest.Templates.TemplateTest
+    JoeFoxTest.Templates.Adverts.AdvertTest
     JoeFoxTest.Templates.UserAuth.UserTest
 "
 
