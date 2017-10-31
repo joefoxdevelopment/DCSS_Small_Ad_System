@@ -1,5 +1,7 @@
 package JoeFox.Templates;
 
+//Import the required javaspace packages
+
 /**
  * Class JoeFox.Templates.Template
  *
@@ -12,7 +14,9 @@ package JoeFox.Templates;
 
 public class Template //extends javaspace template
 {
+    /**
+     * Noargs constructor required for javaspaces
+     */
     public Template () {
-        //No args constructor required for javaspaces
     }
 }
