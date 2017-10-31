@@ -1,10 +1,16 @@
 #!/bin/bash
 
-tests = "
+tests="
     JoeFoxTest.Templates.TemplateTest
+    JoeFoxTest.Templates.UserAuth.UserTest
 "
 
-for test in "$tests"
+echo ""
+
+for test in $tests
 do
+    echo $test
     java org.junit.runner.JUnitCore $test
+    echo "============================================"
+    echo ""
 done

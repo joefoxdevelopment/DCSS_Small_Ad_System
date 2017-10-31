@@ -1,10 +1,12 @@
 package JoeFoxTest.Templates;
 
 import JoeFox.Templates.Template;
-import junit.framework.TestCase;
+import org.junit.*;
+import static org.junit.Assert.*;
 
-public class TemplateTest extends TestCase
+public class TemplateTest
 {
+    @Test
     public void testTrue () {
         assertTrue(true);
     }
