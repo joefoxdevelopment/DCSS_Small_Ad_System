@@ -1,6 +1,7 @@
 #!/bin/bash
 
 tests="
+    JoeFoxTest.UserAuth.PasswordTest
     JoeFoxTest.Templates.TemplateTest
     JoeFoxTest.Templates.Adverts.AdvertTest
     JoeFoxTest.Templates.UserAuth.UserTest
