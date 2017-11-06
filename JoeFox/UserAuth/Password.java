@@ -1,7 +1,6 @@
 package JoeFox.UserAuth;
 
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import JoeFox.Exceptions.UserAuth.InvalidAttemptException;
 import JoeFox.Exceptions.UserAuth.InvalidPasswordException;
@@ -9,20 +8,18 @@ import JoeFox.Exceptions.UserAuth.NoSuchPasswordException;
 
 public class Password
 {
-    private String passhash;
     private byte[] salt;
+
+    private MessageDigest digest;
+    private SecureRandom random;
+    private String passhash;
 
     private static final int PASSWORD_MIN_LENGTH = 8;
     private static final int PASSWORD_SEED_LIMIT = 999999999;
 
-    public Password () {}
-
-    public Password (String password) throws InvalidPasswordException {
-        try {
-            this.setPassword (password);
-        } catch (InvalidPasswordException e) {
-            throw e;
-        }
+    public Password (MessageDigest digest, SecureRandom random) {
+        this.digest = digest;
+        this.random = random;
     }
 
     public void setPassword (String password) throws InvalidPasswordException {
@@ -72,28 +69,14 @@ public class Password
     }
 
     private void generateSalt () {
-        SecureRandom random = null;
-        try {
-            random = SecureRandom.getInstance ("SHA1PRNG");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace ();
-            System.exit (1);
-        }
-        byte[] salt         = new byte[24];
+        byte[] salt = new byte[24];
         random.nextBytes (salt);
         this.salt = salt;
     }
 
     private String hashPassword (byte[] password, byte[] salt) {
-        MessageDigest digest = null;
-        try {
-             digest = MessageDigest.getInstance ("SHA-512");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace ();
-            System.exit (1);
-        }
 
-        digest.update (salt);
+        this.digest.update (salt);
 
         byte[] bytes          = digest.digest (password);
         StringBuilder builder = new StringBuilder();
