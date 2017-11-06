@@ -2,9 +2,7 @@ package JoeFox.UserAuth;
 
 import java.security.MessageDigest;
 import java.security.SecureRandom;
-import JoeFox.Exceptions.UserAuth.InvalidAttemptException;
-import JoeFox.Exceptions.UserAuth.InvalidPasswordException;
-import JoeFox.Exceptions.UserAuth.NoSuchPasswordException;
+import JoeFox.Exceptions.UserAuth.*;
 
 public class Password
 {
@@ -37,18 +35,10 @@ public class Password
             throw new NoSuchPasswordException ();
         }
 
-        if (!this.passhash.equals (attempt)) {
-            throw new InvalidAttemptException ("Password is not " + attempt);
-        }
-    }
-
-    private void assertPasswordValid (
-        String password
-    ) throws InvalidPasswordException {
-        if (PASSWORD_MIN_LENGTH > password.length()) {
-            throw new InvalidPasswordException (
-                "Password shorter than 8 characters"
-            );
+        if (!this.passhash.equals (
+            this.hashPassword (attempt.getBytes (), this.salt)
+        )) {
+            throw new InvalidAttemptException ();
         }
     }
 
@@ -66,6 +56,16 @@ public class Password
         }
 
         return this.hashPassword (password.getBytes (), this.salt);
+    }
+
+    private void assertPasswordValid (
+        String password
+    ) throws InvalidPasswordException {
+        if (PASSWORD_MIN_LENGTH > password.length()) {
+            throw new InvalidPasswordException (
+                "Password shorter than 8 characters"
+            );
+        }
     }
 
     private void generateSalt () {

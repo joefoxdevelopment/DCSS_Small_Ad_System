@@ -1,7 +1,9 @@
 package JoeFoxTest.UserAuth;
 
-import JoeFox.Exceptions.UserAuth.InvalidPasswordException;
-import JoeFox.UserAuth.Password;
+import java.security.MessageDigest;
+import java.security.SecureRandom;
+import JoeFox.Exceptions.UserAuth.*;
+import JoeFox.UserAuth.*;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 
@@ -14,7 +16,8 @@ public class PasswordTest
 
     @Before
     public void setUp () {
-        this.password = new Password ();
+        PasswordFactory factory = new PasswordFactory ();
+        this.password = factory.create ();
     }
 
     @Test
@@ -22,9 +25,50 @@ public class PasswordTest
     {
         try {
             this.password.setPassword ("Four");
-            fail ("Test fails if no InvalidPasswordException thrown.");
+            fail ("No InvalidPasswordException thrown.");
         } catch (Exception e) {
             assertThat(e, instanceOf (InvalidPasswordException.class));
+        }
+    }
+
+    @Test
+    public void testNoExceptionThrownWhenPasswordEncryptedSuccessfully () {
+        try {
+            this.password.setPassword ("ValidPassword");
+        } catch (Exception e) {
+            fail ("No exception should be thrown.");
+        }
+    }
+
+    @Test
+    public void testCheckPasswordThrowsNoSuchPasswordExceptionWhenNotSet () {
+        try {
+            this.password.checkPassword ("ValidPassword");
+            fail ("No NoSuchPasswordException thrown.");
+        } catch (Exception e) {
+            assertThat(e, instanceOf (NoSuchPasswordException.class));
+        }
+    }
+
+    @Test
+    public void testCheckPasswordThrowsInvalidAttemptExceptionWhenNoMatch () {
+        try {
+            this.password.setPassword ("ValidPassword");
+            this.password.checkPassword ("NotTheSame");
+            fail ("Test fails if no InvalidAttemptException is thrown.");
+        } catch (Exception e) {
+            assertThat(e, instanceOf (InvalidAttemptException.class));
+        }
+    }
+
+    @Test
+    public void testNoExceptionThrownWhenAttemptMatchesStoredPassword () {
+        try {
+            this.password.setPassword ("ValidPassword");
+            this.password.checkPassword ("ValidPassword");
+        } catch (Exception e) {
+            e.printStackTrace ();
+            fail ("No exception should be thrown.");
         }
     }
 }
