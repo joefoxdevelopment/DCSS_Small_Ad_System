@@ -10,11 +10,18 @@ import static org.junit.Assert.*;
 
 public class PasswordTest
 {
+    Password password;
+
+    @Before
+    public void setUp () {
+        this.password = new Password ();
+    }
+
     @Test
     public void testInvalidPasswordThrowsInvalidPasswordException ()
     {
         try {
-            Password password = new Password ("Four");
+            this.password.setPassword ("Four");
             fail ("Test fails if no InvalidPasswordException thrown.");
         } catch (Exception e) {
             assertThat(e, instanceOf (InvalidPasswordException.class));
