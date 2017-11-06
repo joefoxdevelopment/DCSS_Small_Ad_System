@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Enter the namespace of the class to test minus the JoeFox. component
+# Enter the package of the class to test minus the JoeFox. prefix and the
+# Test suffix
 tests="
     Exceptions.UserAuth.InvalidAttemptException
     Exceptions.UserAuth.InvalidPasswordException
