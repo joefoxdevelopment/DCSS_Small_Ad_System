@@ -1,8 +1,11 @@
 package JoeFox.UserAuth;
 
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import JoeFox.Exceptions.UserAuth.InvalidAttemptException;
 import JoeFox.Exceptions.UserAuth.InvalidPasswordException;
+import JoeFox.Exceptions.UserAuth.NoSuchPasswordException;
 
 public class Password
 {
@@ -30,6 +33,18 @@ public class Password
         }
     }
 
+    public void checkPassword (
+        String attempt
+        ) throws NoSuchPasswordException, InvalidAttemptException {
+        if (null == this.passhash || null == this.salt) {
+            throw new NoSuchPasswordException ();
+        }
+
+        if (!this.passhash.equals (attempt)) {
+            throw new InvalidAttemptException ("Password is not " + attempt);
+        }
+    }
+
     private void assertPasswordValid (
         String password
     ) throws InvalidPasswordException {
@@ -50,28 +65,35 @@ public class Password
         }
 
         if (null == this.salt) {
-            this.salt = this.generateSalt ();
+            this.generateSalt ();
         }
 
-        this.passhash = this.hashPassword (password.getBytes ());
+        return this.hashPassword (password.getBytes (), this.salt);
     }
 
-    private byte[] generateSalt () {
-        SecureRandom random = SecureRandom.getInstance ("SHA1PRNG");
+    private void generateSalt () {
+        SecureRandom random = null;
+        try {
+            random = SecureRandom.getInstance ("SHA1PRNG");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace ();
+            System.exit (1);
+        }
         byte[] salt         = new byte[24];
         random.nextBytes (salt);
-        return salt;
+        this.salt = salt;
     }
 
-    private String hashPassword (byte[] password) {
-        MessageDigest digest = new MessageDigest ();
+    private String hashPassword (byte[] password, byte[] salt) {
+        MessageDigest digest = null;
         try {
-            MessageDigest digest = MessageDigest.getInstance ("SHA-512");
+             digest = MessageDigest.getInstance ("SHA-512");
         } catch (NoSuchAlgorithmException e) {
-            MessageDigest digest = new MessageDigest ();
+            e.printStackTrace ();
+            System.exit (1);
         }
 
-        digest.update (this.salt);
+        digest.update (salt);
 
         byte[] bytes          = digest.digest (password);
         StringBuilder builder = new StringBuilder();
@@ -79,7 +101,7 @@ public class Password
         for(int i=0; i< bytes.length ;i++)
         {
             builder.append (
-                Integer.toString ((bytes[i] & 0xff) + 0x100, 16).substring (1)
+                Integer.toString (bytes[i])
             );
         }
         return builder.toString();
