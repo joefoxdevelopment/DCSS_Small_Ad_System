@@ -1,22 +1,26 @@
 #!/bin/bash
 
+# Enter the namespace of the class to test minus the JoeFox. component
 tests="
-	JoeFoxTest.Exceptions.UserAuth.InvalidAttemptExceptionTest
-	JoeFoxTest.Exceptions.UserAuth.InvalidPasswordExceptionTest
-	JoeFoxTest.Exceptions.UserAuth.NoSuchPasswordExceptionTest
-    JoeFoxTest.UserAuth.PasswordTest
-    JoeFoxTest.UserAuth.PasswordFactoryTest
-    JoeFoxTest.Templates.TemplateTest
-    JoeFoxTest.Templates.Adverts.AdvertTest
-    JoeFoxTest.Templates.UserAuth.UserTest
+    Exceptions.UserAuth.InvalidAttemptException
+    Exceptions.UserAuth.InvalidPasswordException
+    Exceptions.UserAuth.NoSuchPasswordException
+    Templates.Adverts.Advert
+    Templates.Template
+    Templates.UserAuth.User
+    UserAuth.Password
+    UserAuth.PasswordFactory
 "
 
 echo ""
 
+prefix="JoeFoxTest."
+suffix="Test"
+
 for test in $tests
 do
     echo $test
-    java org.junit.runner.JUnitCore $test
+    java org.junit.runner.JUnitCore "$prefix$test$suffix"
     echo "============================================"
     echo ""
 done
