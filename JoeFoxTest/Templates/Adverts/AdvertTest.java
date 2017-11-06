@@ -18,7 +18,7 @@ public class AdvertTest
 
     @Test
     public void testUserExtendsTemplate () {
-        assertThat(this.advert, instanceOf(Template.class));
+        assertThat (this.advert, instanceOf (Template.class));
     }
 
     @Test

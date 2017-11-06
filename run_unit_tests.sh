@@ -5,6 +5,7 @@ tests="
 	JoeFoxTest.Exceptions.UserAuth.InvalidPasswordExceptionTest
 	JoeFoxTest.Exceptions.UserAuth.NoSuchPasswordExceptionTest
     JoeFoxTest.UserAuth.PasswordTest
+    JoeFoxTest.UserAuth.PasswordFactoryTest
     JoeFoxTest.Templates.TemplateTest
     JoeFoxTest.Templates.Adverts.AdvertTest
     JoeFoxTest.Templates.UserAuth.UserTest
