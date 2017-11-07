@@ -2,6 +2,8 @@ package JoeFox.Gui;
 
 import javax.swing.*;
 import JoeFox.Gui.NamedPanel;
+import JoeFox.Space.AdvertRetriever;
+import JoeFox.Templates.Adverts.Advert;
 
 public class ViewAdvertPanel
     extends NamedPanel
@@ -16,11 +18,15 @@ public class ViewAdvertPanel
         JPanel panel = new JPanel ();
         //panel.setLayout ();               //Choose a layout
 
-        //Static content for now
-        JLabel content = new JLabel ("List of Adverts");
-        content.setHorizontalAlignment (JLabel.CENTER);
+        AdvertRetriever retriever = new AdvertRetriever ();
 
-        panel.add (content);
+        DefaultListModel<Advert> advertList = retriever.getCurrentAdverts ();
+        JList list = new JList<Advert> (advertList);
+        list.setVisibleRowCount (10);
+
+        JScrollPane advertListScroller = new JScrollPane (list);
+
+        panel.add (advertListScroller);
 
         return panel;
     }
