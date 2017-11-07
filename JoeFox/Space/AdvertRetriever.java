@@ -19,4 +19,9 @@ public class AdvertRetriever {
         }
         return adverts;
     }
+
+    //Will be used to retrieve the current users adverts
+    public DefaultListModel<Advert> getMyAdverts () {
+        return new DefaultListModel<Advert> ();
+    }
 }
