@@ -57,4 +57,10 @@ public class Advert extends Template
         //Throw exception if price negative
         this.price = price;
     }
+
+    public String toString () {
+        String output = new String ();
+        output = String.format ("%s %01.2f", this.title, this.price);
+        return output;
+    }
 }
