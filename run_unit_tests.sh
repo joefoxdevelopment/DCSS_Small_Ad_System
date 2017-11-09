@@ -3,6 +3,9 @@
 # Enter the package of the class to test minus the JoeFox. prefix and the
 # Test suffix
 tests="
+    Exceptions.Gui.InvalidPanelNameException
+    Exceptions.Gui.NoPanelNameException
+    Exceptions.Gui.NoPanelsException
     Exceptions.UserAuth.InvalidAttemptException
     Exceptions.UserAuth.InvalidPasswordException
     Exceptions.UserAuth.NoSuchPasswordException
