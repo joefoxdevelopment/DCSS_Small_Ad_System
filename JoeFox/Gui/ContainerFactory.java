@@ -10,6 +10,7 @@ public class ContainerFactory implements FactoryInterface {
         ArrayList<NamedPanel> panels = new ArrayList<NamedPanel> ();
 
         panels.add (new ViewAdvertPanel (new String ("View Adverts")));
+        panels.add (new UserAdvertsPanel (new String ("My Adverts")));
 
         return new Container (panels);
     }

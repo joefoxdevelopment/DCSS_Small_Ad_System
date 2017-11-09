@@ -5,17 +5,18 @@ import JoeFox.Gui.NamedPanel;
 import JoeFox.Space.AdvertRetriever;
 import JoeFox.Templates.Adverts.Advert;
 
-public class ViewAdvertPanel
+public class UserAdvertsPanel
     extends NamedPanel
     implements RenderPanelInterface {
 
-    public ViewAdvertPanel (String name) {
+    public UserAdvertsPanel (String name) {
         super (name);
     }
 
     @Override
     public JPanel renderPanel () {
         JPanel panel                        = new JPanel ();
+        JButton newAdButton                 = new JButton ("Add new Advert");
         AdvertRetriever retriever           = new AdvertRetriever ();
         DefaultListModel<Advert> advertList = retriever.getCurrentAdverts ();
         JList list                          = new JList<Advert> (advertList);
@@ -24,6 +25,7 @@ public class ViewAdvertPanel
         JScrollPane advertListScroller = new JScrollPane (list);
 
         panel.add (advertListScroller);
+        panel.add (newAdButton);
 
         return panel;
     }
