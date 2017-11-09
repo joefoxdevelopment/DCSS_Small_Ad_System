@@ -60,7 +60,7 @@ public class Advert extends Template
 
     public String toString () {
         String output = new String ();
-        output = String.format ("%s %01.2f", this.title, this.price);
+        output = String.format ("%s £%01.2f", this.title, this.price);
         return output;
     }
 }

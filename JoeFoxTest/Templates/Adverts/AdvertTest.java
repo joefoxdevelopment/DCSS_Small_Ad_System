@@ -50,4 +50,14 @@ public class AdvertTest
         assertEquals (this.advert.description, new String ("Description"));
         assertEquals (this.advert.price, new Float (2.50));
     }
+
+    @Test
+    public void testToStringReturnsCorrectlyFormattedString () {
+        this.advert.title = new String ("Test Advert");
+        this.advert.price = new Float (2.50);
+        assertEquals (
+            this.advert.toString (),
+            new String ("Test Advert £2.50")
+        );
+    }
 }
