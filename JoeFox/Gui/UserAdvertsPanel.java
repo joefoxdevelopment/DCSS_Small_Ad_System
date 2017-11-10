@@ -21,6 +21,7 @@ public class UserAdvertsPanel
         AdvertRetriever retriever           = new AdvertRetriever ();
         DefaultListModel<Advert> advertList = retriever.getCurrentAdverts ();
         JList list                          = new JList<Advert> (advertList);
+
         list.setVisibleRowCount (10);
         list.setSelectionMode (ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         list.addListSelectionListener (new AdvertListSelectionListener ());
