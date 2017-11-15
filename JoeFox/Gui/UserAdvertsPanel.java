@@ -6,9 +6,7 @@ import JoeFox.Listeners.AdvertListSelectionListener;
 import JoeFox.Space.AdvertRetriever;
 import JoeFox.Templates.Adverts.Advert;
 
-public class UserAdvertsPanel
-    extends NamedPanel
-    implements RenderPanelInterface {
+public class UserAdvertsPanel extends NamedPanel {
 
     public UserAdvertsPanel (String name) {
         super (name);

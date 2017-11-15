@@ -12,13 +12,13 @@ public class UpdateAdvertPanel extends NamedPanel {
     }
 
     public UpdateAdvertPanel (String name, Advert advert) {
-        UpdateAdvertPanel (name);
+        super (name);
 
         this.advert = advert;
     }
 
     @Override
-    public function renderPanel () {
+    public JPanel renderPanel () {
         JPanel panel      = new JPanel ();
         JLabel titleLabel = new JLabel ("Title");
         JLabel descLabel  = new JLabel ("Description");

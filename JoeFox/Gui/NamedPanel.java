@@ -6,7 +6,7 @@ import JoeFox.Exceptions.Gui.InvalidPanelNameException;
 
 public class NamedPanel {
 
-    private String name;
+    public String name;
 
     public NamedPanel (String name) {
         try {

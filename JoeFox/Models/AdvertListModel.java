@@ -1,5 +1,7 @@
 package JoeFox.Models;
 
+import javax.swing.DefaultListModel;
+
 public class AdvertListModel<T> extends DefaultListModel<T> {
 
     public void update (int index) {
