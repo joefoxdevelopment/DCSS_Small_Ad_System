@@ -1,5 +1,6 @@
 package JoeFox.Gui;
 
+import java.awt.GridLayout;
 import javax.swing.*;
 import JoeFox.Templates.Adverts.*;
 
@@ -19,14 +20,14 @@ public class UpdateAdvertPanel extends NamedPanel {
 
     @Override
     public JPanel renderPanel () {
-        JPanel panel      = new JPanel ();
-        JLabel titleLabel = new JLabel ("Title");
-        JLabel descLabel  = new JLabel ("Description");
-        JLabel priceLabel = new JLabel ("Price");
+        JPanel panel = new JPanel (new GridLayout (0,2));
 
-        panel.add (titleLabel);
-        panel.add (descLabel);
-        panel.add (priceLabel);
+        panel.add (new JLabel ("Title: "));
+        panel.add (new JLabel (advert.title));
+        panel.add (new JLabel ("Description: "));
+        panel.add (new JLabel (advert.description));
+        panel.add (new JLabel ("Price: "));
+        panel.add (new JLabel ("£" + String.format ("%.2f", advert.price)));
 
         return panel;
     }
