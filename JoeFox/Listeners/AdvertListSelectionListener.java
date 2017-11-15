@@ -16,8 +16,8 @@ public class AdvertListSelectionListener implements ListSelectionListener {
         );
 
         //Open a new gui displaying the advert details
-        UpdateAdvertPanel panel = new UpdateAdvertPanel (
-            "Update Advert",
+        ShowAdvertPanel panel = new ShowAdvertPanel (
+            "Show Advert",
             advert
         );
 
